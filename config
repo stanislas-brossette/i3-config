@@ -14,7 +14,7 @@ set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
-font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+#font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
@@ -28,60 +28,53 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 ## mod key = Windows key
 #set $mod Mod4
 
-## directory containing personal scripts
-#set $scriptdir $HOME/.i3
+# directory containing personal scripts
+set $scriptdir $HOME/.i3
 
-##font xft:Cousine bold 7.2
-#font xft:Droid Sans Mono 10
+#font xft:Cousine bold 7.2
+font xft:Droid Sans Mono 10
 
-#new_window pixel 3
+new_window pixel 3
 
-## Window focus follows your mouse movements
-#focus_follows_mouse  no
+# Window focus follows your mouse movements
+focus_follows_mouse  no
 ## When switching focus to a window on a different output, warp the cursor to
 ## the center of that window
 #mouse_warping none
 
-## Hide edge borders
-#hide_edge_borders both
+# Hide edge borders
+hide_edge_borders both
 
-## do not move to neighbouring screen with hjkl
-#force_focus_wrapping yes
+# do not move to neighbouring screen with hjkl
+force_focus_wrapping yes
 
-## switch back to the previously focused workspace
-## by retyping the same keys
-#workspace_auto_back_and_forth yes
+# switch back to the previously focused workspace
+# by retyping the same keys
+workspace_auto_back_and_forth yes
 
-## Delaying urgency hint reset on workspace change
-#force_display_urgency_hint 500 ms
+# Delaying urgency hint reset on workspace change
+force_display_urgency_hint 500 ms
 
-## Colors
-#set $lightgray #AAAAAA
-#set $gray      #484848
-#set $gray2     #757575
-#set $darkgray  #333333
-#set $black     #000000
-#set $white     #FFFFFF
-#set $red       #FF0000
-#set $blue      #005588
+# Colors
+set $lightgray #AAAAAA
+set $gray      #484848
+set $gray2     #757575
+set $darkgray  #333333
+set $black     #000000
+set $white     #FFFFFF
+set $red       #FF0000
+set $blue      #005588
 
-#client.focused          $darkgray $darkgray #FFFFFF   #333333
-#client.focused_inactive $darkgray $darkgray #FFFFFF   #000000
-#client.unfocused        $black    $black    #FFFFFF   #000000
+client.focused          $darkgray $darkgray #FFFFFF   #333333
+client.focused_inactive $darkgray $darkgray #FFFFFF   #000000
+client.unfocused        $black    $black    #FFFFFF   #000000
 
-## use Mouse+$mod to drag floating windows to their wanted position
+# use Mouse+$mod to drag floating windows to their wanted position
 #>>>>>>> upstream/master
 floating_modifier $mod
 
-# screen lock
-bindsym Control+$mod+l exec $HOME/.dotfiles/.i3/i3lock-extra.sh -m pixelize
-
 # start a terminal
-#<<<<<<< HEAD
 bindsym $mod+Return exec i3-sensible-terminal
-#=======
-#bindsym $mod+Return exec $scriptdir/tmux_terminal
-#>>>>>>> upstream/master
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -99,14 +92,14 @@ bindsym $mod+d exec dmenu_run
 #set $dmenu_misc   -l 4 -i
 #bindsym $mod+p exec dmenu_run $dmenu_misc -nb '$black' -nf '$lightgray' -sb '$darkgray' -sf '$lightgray' -fn '$dmenu_font' -p $dmenu_prompt
 
-## screen lock
-#bindsym Control+$mod+l exec $scriptdir/i3lock-extra -m pixelize
+# screen lock
+bindsym Control+$mod+l exec $scriptdir/i3lock-extra -m pixelize
 
-## quit menu
-#bindsym Control+Mod1+Delete exec $scriptdir/dmenu_quit
+# quit menu
+bindsym Control+Mod1+Delete exec $scriptdir/dmenu_quit
 
-## screenshot
-#bindsym Print exec xfce4-screenshooter
+# screenshot
+bindsym Print exec xfce4-screenshooter
 #>>>>>>> upstream/master
 
 # change focus
@@ -164,20 +157,20 @@ bindsym $mod+Shift+minus move scratchpad
 # Show the first scratchpad window
 bindsym $mod+minus scratchpad show
 
-# define workspace aliases
-set $WS1 : q
-set $WS2 : w
-set $WS3 : e
-set $WS4 : r
-set $WS5 : t
-set $WS6 : y
-set $WS7 : u
-set $WS8 : i
-set $WS9 : o
+## define workspace aliases
+#set $WS1 : q
+#set $WS2 : w
+#set $WS3 : e
+#set $WS4 : r
+#set $WS5 : t
+#set $WS6 : y
+#set $WS7 : u
+#set $WS8 : i
+#set $WS9 : o
 
-set $WSWEB   : w
-set $WSVIDEO : y
-set $WSCHAT  : u
+#set $WSWEB   : w
+#set $WSVIDEO : y
+#set $WSCHAT  : u
 
 # switch to workspace
 #<<<<<<< HEAD
@@ -267,34 +260,34 @@ bindsym $mod+r mode "resize"
 #=======
 #bindsym $mod+s mode "resize"
 
-## Sound
-#bindsym XF86AudioRaiseVolume exec "amixer -D pulse sset Master  '3%+'"
-#bindsym XF86AudioLowerVolume exec "amixer -D pulse sset Master  '1%-'"
-#bindsym XF86AudioMute        exec "amixer -D pulse set  Master  toggle"
-#bindsym XF86AudioMicMute     exec "amixer -D pulse sset Capture toggle"
+# Sound
+bindsym XF86AudioRaiseVolume exec "amixer -D pulse sset Master  '3%+'"
+bindsym XF86AudioLowerVolume exec "amixer -D pulse sset Master  '1%-'"
+bindsym XF86AudioMute        exec "amixer -D pulse set  Master  toggle"
+bindsym XF86AudioMicMute     exec "amixer -D pulse sset Capture toggle"
 
-## Music
-#bindsym XF86AudioPlay exec "mpc toggle"
-#bindsym XF86AudioStop exec "mpc stop"
-#bindsym XF86AudioNext exec "mpc next"
-#bindsym XF86AudioPrev exec "mpc prev"
+# Music
+bindsym XF86AudioPlay exec "mpc toggle"
+bindsym XF86AudioStop exec "mpc stop"
+bindsym XF86AudioNext exec "mpc next"
+bindsym XF86AudioPrev exec "mpc prev"
 
-## Brightness
-#bindsym XF86MonBrightnessDown exec "xbacklight - 10"
-#bindsym XF86MonBrightnessUp   exec "xbacklight + 10"
+# Brightness
+bindsym XF86MonBrightnessDown exec "xbacklight - 10"
+bindsym XF86MonBrightnessUp   exec "xbacklight + 10"
 
-## Touchpad
-#bindsym XF86TouchpadToggle    exec "synclient TouchpadOff=$(synclient | awk '/TouchpadOff/ {print ($3+1)%2}')"
+# Touchpad
+bindsym XF86TouchpadToggle    exec "synclient TouchpadOff=$(synclient | awk '/TouchpadOff/ {print ($3+1)%2}')"
 
-## Display
-#bindsym XF86Display exec "arandr"
+# Display
+bindsym XF86Display exec "arandr"
 
-## Floating exceptions
-#for_window [class="Arandr"]      floating enable
-#for_window [class="Steam"]       floating enable
-#for_window [class="Wine"]        floating enable
-#for_window [class="YADWIN"]      floating enable border none
-#for_window [instance="Download"] floating enable
+# Floating exceptions
+for_window [class="Arandr"]      floating enable
+for_window [class="Steam"]       floating enable
+for_window [class="Wine"]        floating enable
+for_window [class="YADWIN"]      floating enable border none
+for_window [instance="Download"] floating enable
 
 #assign [title="Firefox"]     $WSWEB
 #assign [title="qutebrowser"] $WSWEB
@@ -315,7 +308,7 @@ bindsym $mod+r mode "resize"
 bar {
   # i3blocks bar
   #status_command i3blocks
-  status_command scripts_dir=/usr/local/libexec/i3blocks i3blocks -c ~/.i3/i3blocks.conf
+  status_command SCRIPTS_DIR=/usr/local/libexec/i3blocks i3blocks -c ~/.i3/i3blocks.conf
 
   # bar position
   position top
@@ -338,3 +331,4 @@ bar {
 
 #launch gnome-setting-daemon on startup
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
+exec --no-startup-id nm-applet

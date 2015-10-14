@@ -8,26 +8,34 @@ LOCKSCRIPT="$HOME/.i3/i3lock-extra -m pixelize"
 
 # Systemctl required
 if ! command -v $SYSTEMCTL >/dev/null 2>&1; then
-  exit 2
+    declare -A CHOICES
+    CHOICES[Shutdown]="poweroff"
+    CHOICES[Reboot]="reboot"
+    CHOICES[Hibernate]="hibernate"
+    CHOICES[Suspend]="suspend"
+    CHOICES[Halt]="halt"
+    CHOICES[Lock]="${LOCKSCRIPT}"
+    CHOICES[Logout]="i3-msg exit"
+    CHOICES[Cancel]=""
+else
+  CHOICES=(
+    [Shutdown]="${SYSTEMCTL} poweroff"
+    [Reboot]="${SYSTEMCTL} reboot"
+    [Hibernate]="${SYSTEMCTL} hibernate"
+    [Suspend]="${SYSTEMCTL} suspend"
+    [Halt]="${SYSTEMCTL} halt"
+    [Lock]="${LOCKSCRIPT}"
+    [Logout]="i3-msg exit"
+    [Cancel]=""
+  )
 fi
 
 # names refer to associative array parameters
 typeset -A CHOICES
 
-CHOICES=(
-  [Shutdown]="${SYSTEMCTL} poweroff"
-  [Reboot]="${SYSTEMCTL} reboot"
-  [Hibernate]="${SYSTEMCTL} hibernate"
-  [Suspend]="${SYSTEMCTL} suspend"
-  [Halt]="${SYSTEMCTL} halt"
-  [Lock]="${LOCKSCRIPT}"
-  [Logout]="i3-msg exit"
-  [Cancel]=""
-)
-
 NROWS=${#CHOICES[@]}
 
-DMENU="dmenu -i -l $NROWS -fn -xos4-terminus-medium-r-*-*-14-*"
+DMENU="dmenu -i -l $NROWS"
 ROFI="rofi -dmenu -lines $NROWS -p Quit: -width -11 -bc white -location 3"
 
 if command -v rofi >/dev/null 2>&1; then
