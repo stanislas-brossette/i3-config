@@ -10,8 +10,8 @@
 #     interval=5
 
 ZONES = [
-  "Asia/Tokyo",
   "Europe/Paris",
+  "Asia/Tokyo",
 ]
 
 CACHE = "/tmp/tz"
